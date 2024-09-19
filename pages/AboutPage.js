@@ -6,24 +6,27 @@ import {
   Image,
   ScrollView,
   Button,
+  Dimensions
 } from "react-native";
 
-export default function AboutPage({ navigation }) {
+export default function AboutPage({ navigation, route }) {
+  const { width } = Dimensions.get('window');
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View>
+        <View style={{ padding: 10 }}>
           <Button
-            title="Home Page"
-            onPress={() => navigation.navigate("Home")}
+            title={`Goto ${route.params.fromPage === "Home" ? "List" : "Home"}`}
+            onPress={() => navigation.navigate(route.params.fromPage === "Home" ? "List" : "Home", { fromPage: "About" })}
           ></Button>
           <Image
             source={require("../assets/dog.png")}
             style={{
               borderColor: "#eee",
-              borderWidth: 5,
-              width: 300,
-              height: 400,
+              width: width - 20,
+              marginBottom: 10,
+              height: 200,
             }}
           />
           <Text>

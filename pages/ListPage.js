@@ -9,9 +9,21 @@ import {
   Pressable
 } from "react-native";
 
-export default function ListPage({ navigation }) {
+export default function ListPage({ navigation, route }) {
   return (
     <SafeAreaView style={styles.container}>
+      { route.params.fromPage !== "Home" && 
+        <Button
+          title={`Goto Home`}
+          onPress={() => navigation.navigate("Home", { fromPage: "List" })}
+        ></Button>
+      }
+      { route.params.fromPage === "Home" && 
+        <Button
+          title={`Goto About`}
+          onPress={() => navigation.navigate("About", { fromPage: "List" })}
+        ></Button>
+      }
       <FlatList
         data={data}
         renderItem={({ item }) => (
@@ -32,10 +44,10 @@ export default function ListPage({ navigation }) {
               {item.title}
             </Text>
             <Pressable
-              onPress={() => navigation.navigate("About", { title: item.title })}
+              onPress={() => navigation.navigate("About", { title: item.title, fromPage: 'List' })}
             >
               <Text style={{ padding: 16, fontSize: 20, backgroundColor: "grey", margin: 2 }}>
-                Go to Detail
+                Go to above page 
             </Text>
             </Pressable>
           </View>
