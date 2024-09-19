@@ -10,6 +10,10 @@ export default function HomePage({ navigation }) {
           title="About Page"
           onPress={() => navigation.navigate("About")}
         ></Button>
+        <Button
+          title="List Page"
+          onPress={() => navigation.navigate("List")}
+        ></Button>
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>

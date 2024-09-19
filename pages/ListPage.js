@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Pressable
 } from "react-native";
 
 export default function ListPage({ navigation }) {
@@ -14,16 +15,30 @@ export default function ListPage({ navigation }) {
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <Text
-            style={{
+          <View
+            style = {{
               padding: 16,
-              fontSize: 20,
-              backgroundColor: "aqua",
-              margin: 2,
+              paddingVertical: 40, 
+              backgroundColor: "lightblue",
+              margin: 2, 
+              flex: 1,
             }}
           >
-            {item.title}
-          </Text>
+            <Text
+              style={{
+                fontSize: 20,
+              }}
+            >
+              {item.title}
+            </Text>
+            <Pressable
+              onPress={() => navigation.navigate("About", { title: item.title })}
+            >
+              <Text style={{ padding: 16, fontSize: 20, backgroundColor: "grey", margin: 2 }}>
+                Go to Detail
+            </Text>
+            </Pressable>
+          </View>
         )}
         keyExtractor={(item) => item.id}
       />
